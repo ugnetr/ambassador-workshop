@@ -1,11 +1,12 @@
 import React, { FC } from "react";
-import { useAppLoaded, useRequest } from "@wix/yoshi-flow-bm";
+import { useAppLoaded, useRequest, useTranslation } from "@wix/yoshi-flow-bm";
 import { Page, Box } from "wix-style-react";
 import { commentsAPI } from "../api/comments.api";
 
 const Index: FC = () => {
   useAppLoaded({ auto: true });
 
+  const { t } = useTranslation();
   const { loading, data, error } = useRequest(commentsAPI());
 
   if (loading) {
@@ -18,7 +19,7 @@ const Index: FC = () => {
 
   return (
     <Page>
-      <Page.Header title="Comments" />
+      <Page.Header dataHook="app-title" title={t('app.title')} />
       <Page.Content>
         {data.map((comment, index) => (
           <Box key={index}>{`${comment.text} - ${comment.author}`}</Box>
