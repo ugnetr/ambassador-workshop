@@ -32,7 +32,9 @@
   },
   "dependencies": {
     "@wix/ambassador-node-workshop-scala-app": "^1.0.37",
-    "wix-style-react": "^10.0.0"
+    "wix-style-react": "^10.0.0",
+    "yoshi-serverless-client": "^4.333.5",
+    "yoshi-serverless-testing": "^5.0.1"
   },
   "jest": {
     "preset": "@wix/yoshi-flow-bm"
