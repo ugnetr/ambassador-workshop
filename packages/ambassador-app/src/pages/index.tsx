@@ -1,31 +1,28 @@
-import React, { FC } from 'react';
-import { useTranslation, useAppLoaded, Trans } from '@wix/yoshi-flow-bm';
-import { Page, Layout, Cell, Card, Text } from 'wix-style-react';
-
-const introUrl = 'https://github.com/wix-private/business-manager';
+import React, { FC } from "react";
+import { useAppLoaded, useModuleParams, useRequest, useTranslation } from "@wix/yoshi-flow-bm";
+import { Page, Box } from "wix-style-react";
+import { commentsAPI } from "../api/comments.api";
 
 const Index: FC = () => {
   useAppLoaded({ auto: true });
 
   const { t } = useTranslation();
+  const { metaSiteId } = useModuleParams();
+  const { loading, data, error } = useRequest(commentsAPI(metaSiteId));
+
+  if (loading) {
+    return <div>Loading...</div>;
+  } else if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <Page>
       <Page.Header dataHook="app-title" title={t('app.title')} />
       <Page.Content>
-        <Layout>
-          <Cell>
-            <Card>
-              <Card.Content>
-                <Text dataHook="get-started">
-                  <Trans i18nKey="app.get-started">
-                    GET STARTED <a href={introUrl}>HERE</a>
-                  </Trans>
-                </Text>
-              </Card.Content>
-            </Card>
-          </Cell>
-        </Layout>
+        {data.map((comment, index) => (
+          <Box key={index}>{`${comment.text} - ${comment.author}`}</Box>
+        ))}
       </Page.Content>
     </Page>
   );

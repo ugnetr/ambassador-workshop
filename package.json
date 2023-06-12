@@ -23,5 +23,10 @@
       "dedupe": true
     }
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0",
+  "dependencies": {
+    "@wix/ambassador-node-workshop-scala-app": "^1.0.7",
+    "yoshi-serverless-client": "^4.333.5",
+    "yoshi-serverless-testing": "^5.0.1"
+  }
 }
