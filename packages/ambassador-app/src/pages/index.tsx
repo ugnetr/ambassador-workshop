@@ -15,8 +15,6 @@ const Index: FC = () => {
     return <div>Error: {error}</div>;
   }
 
-  console.log(loading, data, error);
-
   return (
     <Page>
       <Page.Header dataHook="app-title" title={t('app.title')} />
