@@ -23,5 +23,8 @@
       "dedupe": true
     }
   },
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0",
+  "dependencies": {
+    "@wix/ambassador-node-workshop-scala-app": "^1.0.7"
+  }
 }
