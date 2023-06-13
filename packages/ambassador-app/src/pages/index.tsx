@@ -6,14 +6,14 @@ import {
   useTranslation,
 } from '@wix/yoshi-flow-bm';
 import { Page, Box } from 'wix-style-react';
-import { commentsAPI } from '../api/comments.api';
+import { fetch } from '../api/comments.api';
 
 const Index: FC = () => {
   useAppLoaded({ auto: true });
 
   const { t } = useTranslation();
   const { metaSiteId } = useModuleParams();
-  const { loading, data, error } = useRequest(commentsAPI(metaSiteId));
+  const { loading, data, error } = useRequest(fetch(metaSiteId));
 
   if (loading) {
     return <div>Loading...</div>;

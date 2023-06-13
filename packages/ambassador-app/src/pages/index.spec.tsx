@@ -4,7 +4,7 @@ import { PageHeaderTestkit } from "wix-style-react/dist/testkit";
 import { testkit } from "@wix/yoshi-flow-bm/testkit";
 import { whenRequest } from "@wix/yoshi-flow-bm/testkit/http-client";
 import Index from "./index";
-import { commentsAPI } from "../api/comments.api";
+import { fetch } from "../api/comments.api";
 
 const mockComments = [
   {
@@ -39,7 +39,7 @@ describe("index", () => {
   it("renders initial products", async () => {
     const { TestComponent } = testkit.getBMComponent(Index, {
       mocks: [
-        whenRequest(commentsAPI)
+        whenRequest(fetch)
           .withData("")
           .reply(200, () => mockComments),
       ],
