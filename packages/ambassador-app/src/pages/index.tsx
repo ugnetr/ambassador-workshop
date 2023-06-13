@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
+import React, { FC } from "react";
 import {
   useAppLoaded,
   useModuleParams,
   useRequest,
   useTranslation,
-} from '@wix/yoshi-flow-bm';
-import { Page, Box } from 'wix-style-react';
-import { fetch } from '../api/comments.api';
+} from "@wix/yoshi-flow-bm";
+import { Page, Box, Text } from "wix-style-react";
+import { fetch } from "../api/comments.api";
 
 const Index: FC = () => {
   useAppLoaded({ auto: true });
@@ -23,13 +23,12 @@ const Index: FC = () => {
 
   return (
     <Page>
-      <Page.Header dataHook="app-title" title={t('app.title')} />
+      <Page.Header dataHook="app-title" title={t("app.title")} />
       <Page.Content>
         {data?.map((comment, index) => (
-          <Box
-            key={index}
-            dataHook="comment"
-          >{`${comment.text} - ${comment.author}`}</Box>
+          <Box key={index} dataHook="comment">
+            <Text dataHook="comment-text">{`${comment.text} - ${comment.author}`}</Text>
+          </Box>
         ))}
       </Page.Content>
     </Page>
