@@ -1,14 +1,19 @@
 import React, { FC } from "react";
-import { useAppLoaded, useModuleParams, useRequest, useTranslation } from "@wix/yoshi-flow-bm";
-import { Page, Box } from "wix-style-react";
-import { commentsAPI } from "../api/comments.api";
+import {
+  useAppLoaded,
+  useModuleParams,
+  useRequest,
+  useTranslation,
+} from "@wix/yoshi-flow-bm";
+import { Page, Box, Text } from "wix-style-react";
+import { fetch } from "../api/comments.api";
 
 const Index: FC = () => {
   useAppLoaded({ auto: true });
 
   const { t } = useTranslation();
   const { metaSiteId } = useModuleParams();
-  const { loading, data, error } = useRequest(commentsAPI(metaSiteId));
+  const { loading, data, error } = useRequest(fetch(metaSiteId));
 
   if (loading) {
     return <div>Loading...</div>;
@@ -18,10 +23,12 @@ const Index: FC = () => {
 
   return (
     <Page>
-      <Page.Header dataHook="app-title" title={t('app.title')} />
+      <Page.Header dataHook="app-title" title={t("app.title")} />
       <Page.Content>
-        {data.map((comment, index) => (
-          <Box key={index}>{`${comment.text} - ${comment.author}`}</Box>
+        {data?.map((comment, index) => (
+          <Box key={index} dataHook="comment">
+            <Text dataHook="comment-text">{`${comment.text} - ${comment.author}`}</Text>
+          </Box>
         ))}
       </Page.Content>
     </Page>
